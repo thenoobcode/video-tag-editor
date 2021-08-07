@@ -8,7 +8,7 @@ import { VideoService } from 'src/app/shared/services/video.service';
   styleUrls: ['./video-upload.component.scss']
 })
 export class VideoUploadComponent implements OnInit {
-
+  selectedFile: File;
   constructor(
     private videoSvc: VideoService,
     private router: Router
@@ -17,13 +17,15 @@ export class VideoUploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async uploadVideo(event: any) {
-    if (!event.target.files) return;
-    const videoFile = event.target.files![0];
-    if (videoFile) {
-      this.videoSvc.setVideo(videoFile);
-      this.router.navigate(['edit']);
-    }
+  onFileChange(files: FileList) {
+    if(files?.length > 0) this.selectedFile = files[0];
+  }
+
+  async uploadVideo() {
+    if (!this.selectedFile) return;
+    
+    this.videoSvc.setVideo(this.selectedFile);
+    this.router.navigate(['edit']);
   }
 
   

@@ -1,11 +1,19 @@
 
 .play-frame{
-    width: calc(80vh * 0.6);
-    height: 80vh;
     overflow: hidden;
 
-    video{
-        width: 100%;
-        height: auto;
+    &.potrait{
+        // width: calc(80vh * 0.6);
+        height: 80vh;
+        video{
+            height: 100%;
+        }    
+    }
+
+    &.landscape{
+        width: 80vw;
+        video{
+            width: 100%;
+        }
     }
 }

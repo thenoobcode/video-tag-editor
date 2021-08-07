@@ -4,6 +4,7 @@
         <h6>Upload video</h6>
         <div class="input-group mt-4 w-auto file-control">
             <input type="text" class="form-control border-0 text-dark" 
+            [value]="selectedFile?.name"
             placeholder="Choose file" (click)="fileUpload.click()">
             <div class="input-group-append">
             <button type="button" class="input-group-text border-0 text-dark" 
@@ -11,11 +12,12 @@
             </div>
         
             <input #fileUpload type="file" class="d-none" 
-            (change)="uploadVideo($event)"
+            (change)="onFileChange(fileUpload.files)"
             accept="video/mp4,video/x-m4v,video/*">
         </div>
         
         <button type="button" 
+        (click)="uploadVideo()"
         class="btn btn-secondary px-5 mt-5"
         >Upload</button>
     </div>

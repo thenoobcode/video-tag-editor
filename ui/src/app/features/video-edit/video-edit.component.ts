@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { IVideo, VideoOrientation } from 'src/app/shared/models/iVideo.model';
 import { VideoService } from 'src/app/shared/services/video.service';
 
 @Component({
@@ -8,11 +9,12 @@ import { VideoService } from 'src/app/shared/services/video.service';
   styleUrls: ['./video-edit.component.scss']
 })
 export class VideoEditComponent implements OnInit, OnDestroy {
-  videoBase64Url: string | null;
+  video: IVideo;
+  videoOrientation: VideoOrientation;
   private videoSubscription: Subscription | null;
   
   constructor(private videoSvc: VideoService) { 
-    this.videoBase64Url = null;
+    this.video = null;
     this.videoSubscription = null;
   }
 
@@ -21,9 +23,9 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   }
 
   private subscribeToVideo() {
-    this.videoSubscription = this.videoSvc.Base64String.subscribe(base64Str => {
-      this.videoBase64Url = base64Str;
-    })
+    this.videoSubscription = this.videoSvc.Base64String.subscribe(videoObj => {
+      this.video = videoObj;
+    });
   }
 
   ngOnDestroy() {
