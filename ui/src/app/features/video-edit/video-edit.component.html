@@ -1,7 +1,26 @@
-<div class="h-100 d-flex justify-content-center align-items-center">
-    <div class="play-frame border mx-auto" *ngIf="video?.base64String" 
-    [ngClass]="video.orientation.toString()">
-        <video [src]="video.base64String" controls>
-        </video>
+<div class="d-flex align-items-stretch edit-container">
+    <div class="col-12 col-md-6 h-100 tag-container">
+        <app-tag-editor [tags]="leftSideTags"
+        title="Price option 1 & 2 (Left Side)"
+        (onTagSelect)="selectLeftTag($event)">
+        </app-tag-editor>
+
+        <app-tag-editor [tags]="leftSideTags"
+        title="Price option 3 (Right Side)"
+        (onTagSelect)="selectRightTag($event)">
+        </app-tag-editor>
+    </div>
+    <div class="col-12 col-md-6 h-100 d-flex justify-content-center align-items-center">
+        <div class="play-frame border mx-auto" *ngIf="video?.base64String" 
+        [ngClass]="video.orientation.toString()">
+            <video [src]="video.base64String" controls>
+            </video>
+            <div class="left-tag" *ngIf="selectedLeftTag">
+                <app-tag [tag]="selectedLeftTag"></app-tag>
+            </div>
+            <div class="right-tag" *ngIf="selectedRightTag">
+                <app-tag [tag]="selectedRightTag"></app-tag>
+            </div>
+        </div>
     </div>
 </div>

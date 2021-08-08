@@ -5,8 +5,78 @@
 html, body{
     width: 100%;
     height: 100%;
+    letter-spacing: 0.5px;
 }
 
 body{
     font-size: 16px;
+    font-family: 'Titillium Web', cursive;
+    font-weight: 700;
 }
+
+h1,h2,h3,h4,h5, h6{
+    font-weight: 900;
+}
+
+/*CheckBox CSS Starts*/
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 2em;
+    // margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .check-mark:after {
+            display: block;
+        }
+    }
+    
+    /* Create a custom checkbox */
+    .check-mark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1.5625em;
+        width: 1.5625em;
+        background-color: #eee;
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        &:after {
+            left: 0.5625em;
+            top: 0.3125em;
+            // width: 0.3125em;
+            // height: 0.625em;
+            width: 0.4em;
+            height: 0.9em;
+            border: solid white;
+            border-width: 0 0.1875em 0.1875em 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+
+    &:hover input ~ .check-mark {
+        background-color: #ccc;
+    }
+
+    input:checked ~ .check-mark {
+        background-color: #2196F3;
+    }
+  }
+/*CheckBox CSS Ends*/

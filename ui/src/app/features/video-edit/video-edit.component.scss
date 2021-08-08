@@ -1,13 +1,25 @@
+.edit-container{
+    height: 100%;
+    overflow: hidden;
+}
+
+.tag-container{
+    overflow-y: auto;
+}
 
 .play-frame{
     overflow: hidden;
-
+    position: relative;
     &.potrait{
         // width: calc(80vh * 0.6);
-        height: 80vh;
+        height: 90vh;
         video{
             height: 100%;
         }    
+
+        .left-tag, .right-tag{
+            width: 25%;
+        }
     }
 
     &.landscape{
@@ -15,5 +27,23 @@
         video{
             width: 100%;
         }
+
+        .left-tag, .right-tag{
+            height: 25%;
+        }
+    }
+
+    .left-tag, .right-tag{
+        position: absolute;
+    }
+    
+    .left-tag{
+        bottom: 1rem;
+        left: 1rem;
+    }
+
+    .right-tag{
+        top: 1rem;
+        right: 1rem;
     }
 }
