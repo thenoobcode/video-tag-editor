@@ -8,19 +8,23 @@ import { VideoEditComponent } from './features/video-edit/video-edit.component';
 import { VideoUploadComponent } from './features/video-upload/video-upload.component';
 import { TagModule } from './shared/components/tag/tag.module';
 import { TagEditorModule } from './shared/components/tag-editor/tag-editor.module';
+import { LoginComponent } from './features/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoEditComponent,
-    VideoUploadComponent
+    VideoUploadComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     TagModule,
-    TagEditorModule
+    TagEditorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
