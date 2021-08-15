@@ -43,8 +43,8 @@ export class TagComponent implements OnInit {
       (tagItem.price > 0 ? tagItem.price : '');
   }
 
-  public get SVG() {
-    return this.svgRef.nativeElement.outerHTML;
+  public get SVG(): Element {
+    return this.svgRef.nativeElement;
   }
 
 }

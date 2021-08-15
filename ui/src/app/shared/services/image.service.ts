@@ -7,13 +7,20 @@ export class ImageService {
 
   constructor() { }
 
-  public convertSvgToPNG(svg: string): Promise<string> {
+  public convertSvgToBase64PNG(svg: Element): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       try {
         let canvas = document.createElement('canvas');
         let ctx = canvas.getContext('2d');
+        let data = (new XMLSerializer()).serializeToString(svg);
+        let DOMURL = window.URL || window.webkitURL || window;
         let img = new Image();
-        let url = `data:image/svg+xml,${svg}`;
+
+        let svgBlob = new Blob([data], { type: 'image/svg+xml;charset=utf-8' });
+        let url = (DOMURL as any).createObjectURL(svgBlob);
+        let svgSize = svg.getBoundingClientRect();
+        canvas.width = svgSize.width * 3;
+        canvas.height = svgSize.height * 3;
 
         img.onload = function () {
           ctx.drawImage(img, 0, 0);

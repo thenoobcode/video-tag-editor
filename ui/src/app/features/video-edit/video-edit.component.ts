@@ -59,8 +59,8 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   }
 
   async saveVideo() {
-    var leftTagImgPromise = this.imageSvc.convertSvgToPNG(this.leftTagRef.SVG);
-    var rightTagImgPromise = this.imageSvc.convertSvgToPNG(this.rightTagRef.SVG);
+    var leftTagImgPromise = this.imageSvc.convertSvgToBase64PNG(this.leftTagRef.SVG);
+    var rightTagImgPromise = this.imageSvc.convertSvgToBase64PNG(this.rightTagRef.SVG);
     
     var images = await Promise.all([leftTagImgPromise, rightTagImgPromise]);
     
