@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ITag } from '../../models/iTag.model';
 import { ITagItem } from '../../models/iTagItem.model';
 
@@ -9,6 +9,8 @@ import { ITagItem } from '../../models/iTagItem.model';
 })
 export class TagComponent implements OnInit {
   @Input() tag: ITag;
+
+  @ViewChild("svgRef") svgRef: ElementRef;
   
   constructor() { }
 
@@ -37,9 +39,12 @@ export class TagComponent implements OnInit {
   }
 
   public getBottomLine(tagItem: ITagItem) {
-    console.log(tagItem.currency);
     return (tagItem.currency ? tagItem.currency : '') +
       (tagItem.price > 0 ? tagItem.price : '');
+  }
+
+  public get SVG() {
+    return this.svgRef.nativeElement.outerHTML;
   }
 
 }

@@ -13,9 +13,11 @@ export class TagEditorComponent implements OnInit {
   @Output() onTagSelect: EventEmitter<ITag>;
 
   selectedTag: ITag;
+  creationTimeStamp: string;
 
   constructor() {
     this.onTagSelect = new EventEmitter<ITag>();
+    this.creationTimeStamp = new Date().getTime().toString();
   }
 
   ngOnInit(): void {

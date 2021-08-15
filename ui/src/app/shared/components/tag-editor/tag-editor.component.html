@@ -11,7 +11,8 @@
                 <label class="checkbox-container" 
                 *ngFor="let key of CurrencyArray">
                     {{ key + (key==='None' ? '' : ' (' + getCurrencyEnumValue(key) + ')') }}
-                    <input type="radio" name="firstItemPrice" [value]="getCurrencyEnumValue(key)"
+                    <input type="radio" [name]="creationTimeStamp + 'firstItemPrice'" 
+                    [value]="getCurrencyEnumValue(key)"
                     [(ngModel)]="selectedTag.topItem.currency">
                     <span class="check-mark"></span>
                 </label>
@@ -25,7 +26,8 @@
                 <label class="checkbox-container" 
                 *ngFor="let key of CurrencyArray">
                     {{ key + (key==='None' ? '' : ' (' + getCurrencyEnumValue(key) + ')') }}
-                    <input type="radio" name="secondItemPrice" [value]="getCurrencyEnumValue(key)"
+                    <input type="radio" [name]="creationTimeStamp + 'secondItemPrice'" 
+                    [value]="getCurrencyEnumValue(key)"
                     [(ngModel)]="selectedTag.bottomItem.currency">
                     <span class="check-mark"></span>
                 </label>

@@ -1,7 +1,4 @@
-.edit-container{
-    height: 100%;
-    overflow: hidden;
-}
+@import '../../../assets/variables.scss';
 
 .tag-container{
     overflow-y: auto;
@@ -45,5 +42,17 @@
     .right-tag{
         top: 1rem;
         right: 1rem;
+    }
+}
+
+.col-6{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+@media all and (min-width: $min-lg-width) {
+    .edit-container{
+        height: 100%;
+        overflow: hidden;
     }
 }
