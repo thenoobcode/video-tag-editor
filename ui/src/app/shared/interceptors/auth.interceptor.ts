@@ -7,17 +7,25 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginService } from '../services/login.service';
-import { map, mergeMap } from 'rxjs/operators';
+import { finalize, mergeMap } from 'rxjs/operators';
+import { LoaderService } from '../components/loader/loader.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private loginSvc: LoginService) {}
+  constructor(
+    private loginSvc: LoginService,
+    private loaderSvc: LoaderService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    this.loaderSvc.startLoading();
     return this.loginSvc.LogggedInUser.pipe(
       mergeMap(user => {
         request = this.addHeaders(request, user?.token);
         return next.handle(request);
+      }),
+      finalize(() => {
+        this.loaderSvc.stopLoading();
       })
     );
   }

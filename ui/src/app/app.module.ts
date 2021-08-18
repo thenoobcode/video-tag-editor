@@ -3,13 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { VideoEditComponent } from './features/video-edit/video-edit.component';
 import { VideoUploadComponent } from './features/video-upload/video-upload.component';
 import { TagModule } from './shared/components/tag/tag.module';
 import { TagEditorModule } from './shared/components/tag-editor/tag-editor.module';
 import { LoginComponent } from './features/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { LoaderModule } from './shared/components/loader/loader.module';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,14 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     TagModule,
     TagEditorModule,
-    FormsModule
+    FormsModule,
+    LoaderModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
