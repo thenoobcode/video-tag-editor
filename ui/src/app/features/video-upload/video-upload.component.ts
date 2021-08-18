@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { CommonService } from 'src/app/shared/services/common.service';
+import { VideoApiService } from 'src/app/shared/services/video-api.service';
 import { VideoService } from 'src/app/shared/services/video.service';
 
 @Component({
@@ -11,7 +14,9 @@ export class VideoUploadComponent implements OnInit {
   selectedFile: File;
   constructor(
     private videoSvc: VideoService,
-    private router: Router
+    private router: Router,
+    private videoAPISvc: VideoApiService,
+    private commonSvc: CommonService
   ) { }
 
   ngOnInit(): void {
@@ -25,9 +30,15 @@ export class VideoUploadComponent implements OnInit {
     if (!this.selectedFile) return;
     
     this.videoSvc.setVideo(this.selectedFile);
-    this.router.navigate(['edit']);
+    let video = await this.videoSvc.Base64String.toPromise();
+    this.videoAPISvc.uploadRawVideo(video)
+    .pipe(take(1))
+    .subscribe(()=>{
+      this.router.navigate(['edit']);
+    },
+    (err)=> {
+      this.commonSvc.handleError(err, "The video was not uploaded. Something didn't work fine.");
+    });
   }
-
-  
 
 }

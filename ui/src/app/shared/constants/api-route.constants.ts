@@ -1,9 +1,9 @@
 import { environment } from "src/environments/environment"
 
-const VideoController = environment.videoApiBaseUrl + "/";
 export const APIRoutes = {
-    SignIn: "",
-    UploadRawVideo: VideoController+ "/",
-    StreamVideo: VideoController+ "/",
-    UploadVideoEdits: VideoController+ "/"
+    SignIn: environment.videoApiBaseUrl + "/login",
+    Logout: environment.videoApiBaseUrl + "/logout",
+    UploadRawVideo: environment.videoApiBaseUrl + "/upload",
+    StreamVideo: environment.videoApiBaseUrl + "/download",
+    UploadVideoEdits: environment.videoApiBaseUrl + "/price_tag"
 }

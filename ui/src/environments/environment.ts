@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  videoApiBaseUrl: ""
+  videoApiBaseUrl: "https://cubicus.pythonanywhere.com"
 };
 
 /*

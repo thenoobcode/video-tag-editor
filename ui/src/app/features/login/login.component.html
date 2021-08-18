@@ -7,15 +7,15 @@
             <div class="inputs mt-4">
                 <div class="input-cont w-auto">
                     <input type="email" class="form-control border-0 text-dark" 
-                    required [(ngModel)]="loginObj.userName" name="userName"
-                    #userName="ngModel" placeholder="Username">
-                    <span *ngIf="userName.dirty" 
-                    [ngClass]="{'text-success': userName.valid, 'text-danger': userName.invalid}"
+                    required [(ngModel)]="loginObj.username" name="username"
+                    #username="ngModel" placeholder="Username">
+                    <span *ngIf="username.dirty" 
+                    [ngClass]="{'text-success': username.valid, 'text-danger': username.invalid}"
                         class="material-icons input-append">
-                        {{ userName.valid ? 'check' : 'info' }}
+                        {{ username.valid ? 'check' : 'info' }}
                     </span>
                 </div>
-                <div *ngIf="userName.dirty && userName.invalid" class="text-danger">
+                <div *ngIf="username.dirty && username.invalid" class="text-danger">
                     <small>User name is required.</small>
                 </div>
                 <div class="input-cont mt-3 w-auto">

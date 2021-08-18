@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return this.loginSvc.LogggedInUser.pipe(
       mergeMap(user => {
-        request = this.addHeaders(request, user);
+        request = this.addHeaders(request, user?.token);
         return next.handle(request);
       })
     );
