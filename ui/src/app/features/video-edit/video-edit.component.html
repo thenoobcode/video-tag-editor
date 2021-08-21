@@ -1,16 +1,28 @@
 <div class="d-flex flex-wrap align-items-stretch edit-container">
     <div class="col-12 col-lg-6 h-100 tag-container order-2 order-lg-1 p-2 p-lg-3">
-        <app-tag-editor [tags]="leftSideTags"
+        <app-tag-editor 
+        [tags]="leftSideTags"
         title="Price option 1 & 2 (Left Side)"
         (onTagSelect)="selectLeftTag($event)">
         </app-tag-editor>
 
-        <app-tag-editor [tags]="leftSideTags"
+        <app-tag-editor class="d-block mt-4 mt-lg-5" 
+        [tags]="leftSideTags"
         title="Price option 3 (Right Side)"
         (onTagSelect)="selectRightTag($event)">
         </app-tag-editor>
 
-        <div class="actions">
+        <app-icon-selector class="d-block mt-4 mt-lg-5" 
+        title="First Icon"
+        [icons]="availableIcons"
+        (onSelect)="onIconSelect('left', $event)"></app-icon-selector>
+
+        <app-icon-selector class="d-block mt-4 mt-lg-5" 
+        title="Second Icon"
+        [icons]="availableIcons"
+        (onSelect)="onIconSelect('right', $event)"></app-icon-selector>
+
+        <div class="actions mt-4 mt-lg-5">
             <div class="d-flex">
                 <div class="col-6 col-md-4">
                     <button type="button" 
@@ -47,6 +59,12 @@
             </div>
             <div class="right-tag" *ngIf="selectedRightTag">
                 <app-tag #rightTagRef [tag]="selectedRightTag"></app-tag>
+            </div>
+            <div class="first-icon" *ngIf="firstSelectedIcon">
+                <img [src]="firstSelectedIcon">
+            </div>
+            <div class="second-icon" *ngIf="secondSelectedIcon">
+                <img [src]="secondSelectedIcon">
             </div>
         </div>
     </div>

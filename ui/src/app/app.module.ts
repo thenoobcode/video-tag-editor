@@ -12,6 +12,7 @@ import { LoginComponent } from './features/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LoaderModule } from './shared/components/loader/loader.module';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { IconSelectorModule } from './shared/components/icon-selector/icon-selector.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     TagModule,
     TagEditorModule,
     FormsModule,
-    LoaderModule
+    LoaderModule,
+    IconSelectorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

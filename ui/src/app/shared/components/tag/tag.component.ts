@@ -10,6 +10,8 @@ import { ITagItem } from '../../models/iTagItem.model';
 export class TagComponent implements OnInit {
   @Input() tag: ITag;
 
+  readonly blackColor: string = "#454142";
+
   @ViewChild("svgRef") svgRef: ElementRef;
   
   constructor() { }

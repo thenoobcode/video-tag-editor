@@ -11,7 +11,7 @@ import { ImageService } from 'src/app/shared/services/image.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { IUploadTag, VideoApiService } from 'src/app/shared/services/video-api.service';
 import { VideoService } from 'src/app/shared/services/video.service';
-import { LeftSideTags } from './tags.constant';
+import { AvailableIconsPaths, LeftSideTags } from './tags.constant';
 
 @Component({
   selector: 'app-video-edit',
@@ -24,7 +24,10 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   leftSideTags: ITag[];
   selectedLeftTag: ITag;
   selectedRightTag: ITag;
+  firstSelectedIcon: string;
+  secondSelectedIcon: string;
   currencyEnum = Currency;
+  availableIcons: string[];
   private videoSubscription: Subscription | null;
 
   @ViewChild("leftTagRef") leftTagRef: TagComponent;
@@ -41,6 +44,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     this.video = null;
     this.videoSubscription = null;
     this.leftSideTags = LeftSideTags;
+    this.availableIcons = AvailableIconsPaths;
   }
 
   ngOnInit(): void {
@@ -93,6 +97,13 @@ export class VideoEditComponent implements OnInit, OnDestroy {
       this.notificationSvc.alert("The edits has been saved successfully.");
     },
     err=> this.commonSvc.handleError(err));
+  }
+
+  onIconSelect(position: 'left' | 'right', icon: string) {
+    if (position === "left")
+      this.firstSelectedIcon = icon;
+    else if (position === "right")
+      this.secondSelectedIcon = icon;
   }
 
   resetValues() {

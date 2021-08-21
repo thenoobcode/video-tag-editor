@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { ILogin } from 'src/app/shared/models/iLogin.model';
 import { CommonService } from 'src/app/shared/services/common.service';
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginSvc: LoginService,
-    private commonSvc: CommonService
+    private commonSvc: CommonService,
+    private router: Router
   ) {
     this.loginObj = {
       password: null,
@@ -28,7 +30,10 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginSvc.signInUser(this.loginObj)
     .pipe(take(1))
-    .subscribe(()=>{}, (err) => this.commonSvc.handleError(err));
+    .subscribe(()=>{
+      this.router.navigate([""]);
+    },
+    (err) => this.commonSvc.handleError(err));
   }
 
 }

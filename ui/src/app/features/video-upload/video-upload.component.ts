@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { mergeMap, take } from 'rxjs/operators';
 import { CommonService } from 'src/app/shared/services/common.service';
 import { VideoApiService } from 'src/app/shared/services/video-api.service';
 import { VideoService } from 'src/app/shared/services/video.service';
@@ -29,11 +29,13 @@ export class VideoUploadComponent implements OnInit {
   async uploadVideo() {
     if (!this.selectedFile) return;
     
-    this.videoSvc.setVideo(this.selectedFile);
-    let video = await this.videoSvc.Base64String.toPromise();
-    this.videoAPISvc.uploadRawVideo(video)
-    .pipe(take(1))
-    .subscribe(()=>{
+    await this.videoSvc.setVideo(this.selectedFile);
+    this.videoSvc.Base64String.pipe(
+      mergeMap((_video:any) => {
+        return this.videoAPISvc.uploadRawVideo(_video)
+      }),
+      take(1)
+    ).subscribe(()=>{
       this.router.navigate(['edit']);
     },
     (err)=> {

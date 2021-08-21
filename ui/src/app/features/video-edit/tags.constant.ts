@@ -6,7 +6,7 @@ export const LeftSideTags: ITag[] = [
     },
     {
         topItem: { text: "Large" },
-        bottomItem: {text: "Medium" }
+        bottomItem: { text: "Medium" }
     },
     {
         topItem: { text: "Twister Cup" }
@@ -18,21 +18,21 @@ export const LeftSideTags: ITag[] = [
         topItem: { text: "12oz" }
     },
     {
-        topItem: {text: "Medium" }
+        topItem: { text: "Medium" }
     },
     {
-        topItem: {text: "2 Medium" }
+        topItem: { text: "2 Medium" }
     },
     {
         topItem: { text: "Refill" }
     },
     {
         topItem: { text: "" },
-        bottomItem: {text: "" }
+        bottomItem: { text: "" }
     },
     {
         topItem: { text: "21oz" },
-        bottomItem: {text: "12oz" }
+        bottomItem: { text: "12oz" }
     },
     {
         topItem: { text: "Large" }
@@ -49,4 +49,9 @@ export const LeftSideTags: ITag[] = [
     {
         topItem: { text: "Test" }
     }
-]
+];
+
+export const AvailableIconsPaths: string[] = [
+    "/assets/images/icon1.png",
+    "/assets/images/icon2.png"
+];
