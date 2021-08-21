@@ -77,6 +77,8 @@ export class VideoEditComponent implements OnInit, OnDestroy {
 
   async saveVideo(rotate?: boolean) {
     let tags: IUploadTag[] = [];
+    let icons: IUploadTag[] = [];
+
     if (this.leftTagRef) {
       tags.push({
         image: await this.imageSvc.convertSvgToBase64PNG(this.leftTagRef.SVG),
@@ -90,8 +92,22 @@ export class VideoEditComponent implements OnInit, OnDestroy {
         location: "right"
       });
     }
+
+    if (this.firstSelectedIcon) {
+      icons.push({
+        image: await this.imageSvc.imgPathToBase64(this.firstSelectedIcon),
+        location: 'left'
+      });
+    }
+
+    if (this.secondSelectedIcon) {
+      icons.push({
+        image: await this.imageSvc.imgPathToBase64(this.secondSelectedIcon),
+        location: 'right'
+      });
+    }
     
-    this.videoAPISvc.postVideoEdits(tags, rotate)
+    this.videoAPISvc.postVideoEdits(tags, icons, rotate)
     .pipe(take(1))
     .subscribe(()=>{
       this.notificationSvc.alert("The edits has been saved successfully.");

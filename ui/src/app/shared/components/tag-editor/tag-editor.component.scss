@@ -1,8 +1,13 @@
+@import '../../../../assets/variables.scss';
+
 .tag{
     display: inline-block;
     width: 25%;
     padding: 0.5rem;
     cursor: pointer;
+    &.selected{
+        background-color: $black-color;
+    }
 }
 
 

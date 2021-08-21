@@ -36,4 +36,24 @@ export class ImageService {
       }
     });
   }
+
+  /**Convert an image url, path to bade 64 string. */
+  public imgPathToBase64(path: string): Promise<string> {
+    return fetch(path)
+      .then(resp => {
+        return resp.blob();
+      })
+      .then(blob => {
+        return new Promise<string>((resolve, reject) => {
+          try {
+            var reader = new FileReader();
+            reader.onload = () => resolve(reader.result.toString());
+            reader.readAsDataURL(blob);
+          }
+          catch (err) {
+            reject(err);
+          }
+        })
+      });
+  }
 }

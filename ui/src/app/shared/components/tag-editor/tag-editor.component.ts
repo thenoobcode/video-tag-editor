@@ -13,6 +13,7 @@ export class TagEditorComponent implements OnInit {
   @Output() onTagSelect: EventEmitter<ITag>;
 
   selectedTag: ITag;
+  selectedTagIndex: number;
   creationTimeStamp: string;
 
   constructor() {
@@ -23,7 +24,8 @@ export class TagEditorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectTag(tag: ITag) {
+  selectTag(tag: ITag, index: number) {
+    this.selectedTagIndex = index;
     this.selectedTag = JSON.parse(JSON.stringify(tag));
     this.onTagSelect.emit(this.selectedTag);
   }

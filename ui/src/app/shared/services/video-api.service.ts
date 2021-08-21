@@ -15,9 +15,10 @@ export class VideoApiService {
     return this._http.post<any>(APIRoutes.UploadRawVideo, {path: video.base64String});
   }
 
-  public postVideoEdits(tags: IUploadTag[], rotate?: boolean): Observable<any> {
+  public postVideoEdits(tags: IUploadTag[], icons?: IUploadTag[], rotate?: boolean): Observable<any> {
     var body = {
       tags: tags,
+      icons: icons,
       rotate: rotate
     };
     return this._http.post<any>(APIRoutes.UploadVideoEdits, body);
