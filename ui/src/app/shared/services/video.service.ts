@@ -28,8 +28,9 @@ export class VideoService {
 
   private prepareVideo(base64String: string): Promise<IVideo>  {
     return new Promise<IVideo>((resolve, reject) => {
+      const videoElem = document.createElement("video");
       try {
-        const videoElem = document.createElement("video");
+        videoElem.style.display = "none";
         document.body.appendChild(videoElem);
         videoElem.src = base64String;
         videoElem.onloadeddata = () => {
@@ -43,6 +44,7 @@ export class VideoService {
       }
       catch (err) {
         reject(err);
+        videoElem.remove();
       }
     });    
   }

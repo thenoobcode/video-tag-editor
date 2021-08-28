@@ -15,13 +15,15 @@ export class VideoApiService {
     return this._http.post<any>(APIRoutes.UploadRawVideo, {path: video.base64String});
   }
 
-  public postVideoEdits(tags: IUploadTag[], icons?: IUploadTag[], rotate?: boolean): Observable<any> {
+  public postVideoEdits(tags: IUploadTag[], icons?: IUploadTag[], rotate: boolean=false): Observable<ArrayBuffer> {
     var body = {
       tags: tags,
       icons: icons,
       rotate: rotate
     };
-    return this._http.post<any>(APIRoutes.UploadVideoEdits, body);
+    return this._http.post(APIRoutes.UploadVideoEdits, body, {
+      responseType: "arraybuffer"
+    });
   }
 }
 

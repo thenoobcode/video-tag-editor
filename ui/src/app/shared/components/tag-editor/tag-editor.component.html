@@ -1,8 +1,8 @@
 <div *ngIf="tags" class="tags">
     <h6 *ngIf="title">{{title}}</h6>
-    <div *ngFor="let tag of tags; let i=index" class="tag" 
-    [ngClass]="{'selected': selectedTagIndex==i}"
-    (click)="selectTag(tag, i)">
+    <div *ngFor="let tag of tags; trackBy: trackByName" class="tag" 
+    [ngClass]="{'selected': tag.name===selectedTag?.name}"
+    (click)="selectTag(tag)">
         <app-tag [tag]="tag"></app-tag>
     </div>
     <div class="d-flex flex-wrap mt-4 medium-font">

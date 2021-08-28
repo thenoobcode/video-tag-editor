@@ -43,8 +43,8 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   ) {
     this.video = null;
     this.videoSubscription = null;
-    this.leftSideTags = LeftSideTags;
-    this.availableIcons = AvailableIconsPaths;
+    this.leftSideTags = JSON.parse(JSON.stringify(LeftSideTags));
+    this.availableIcons = JSON.parse(JSON.stringify(AvailableIconsPaths));
   }
 
   ngOnInit(): void {
@@ -109,8 +109,10 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     
     this.videoAPISvc.postVideoEdits(tags, icons, rotate)
     .pipe(take(1))
-    .subscribe(()=>{
-      this.notificationSvc.alert("The edits has been saved successfully.");
+    .subscribe((arrayBuffer: ArrayBuffer) => {
+      this.commonSvc.downloadFile(arrayBuffer, "video/mp4", true);
+      this.resetValues();
+      this.notificationSvc.alert("The edits has been saved successfully.", "S");
     },
     err=> this.commonSvc.handleError(err));
   }
@@ -125,6 +127,8 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   resetValues() {
     this.selectedLeftTag = null;
     this.selectedRightTag = null;
+    this.firstSelectedIcon = null;
+    this.secondSelectedIcon = null;
   }
 
   ngOnDestroy() {

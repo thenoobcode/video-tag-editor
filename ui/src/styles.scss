@@ -1,3 +1,5 @@
+@import './assets/variables.scss';
+
 *, ::after, ::before{
     box-sizing: border-box;
 }
@@ -154,3 +156,9 @@ h1,h2,h3,h4,h5, h6{
     }
 }
 /*Custom Notification Alert Ends*/
+
+@media (min-width: $min-lg-width){
+    .customAlert{
+        min-width: 30%;
+    }
+}

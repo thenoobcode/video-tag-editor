@@ -24,4 +24,17 @@ export class CommonService {
       console.error(err);
     }
   }
+
+  public downloadFile(data: any, type: string='application/zip', newLink:boolean=false) {
+    const blob = new Blob([data], {
+      type: type
+    });
+    const url = window.URL.createObjectURL(blob);
+    let link = document.createElement("a");
+    if (newLink) link.setAttribute("target", "_blank");
+    link.style.display = "none";
+    link.href = url;
+    link.click();
+    setTimeout(() => link.remove(), 100);
+  }
 }

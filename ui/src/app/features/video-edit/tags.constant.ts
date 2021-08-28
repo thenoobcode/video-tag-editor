@@ -2,52 +2,67 @@ import { ITag } from "src/app/shared/models/iTag.model";
 
 export const LeftSideTags: ITag[] = [
     {
-        topItem: { text: "" }
+        topItem: { text: "" },
+        name: "1"
     },
     {
         topItem: { text: "Large" },
-        bottomItem: { text: "Medium" }
+        bottomItem: { text: "Medium" },
+        name: "2"
     },
     {
-        topItem: { text: "Twister Cup" }
-    },
-    {
-        topItem: { text: "21oz" }
-    },
-    {
-        topItem: { text: "12oz" }
-    },
-    {
-        topItem: { text: "Medium" }
-    },
-    {
-        topItem: { text: "2 Medium" }
-    },
-    {
-        topItem: { text: "Refill" }
-    },
-    {
-        topItem: { text: "" },
-        bottomItem: { text: "" }
+        topItem: { text: "Twister Cup" },
+        name: "3"
     },
     {
         topItem: { text: "21oz" },
-        bottomItem: { text: "12oz" }
+        name: "4"
     },
     {
-        topItem: { text: "Large" }
+        topItem: { text: "12oz" },
+        name: "5"
     },
     {
-        topItem: { text: "2 for" }
+        topItem: { text: "Medium" },
+        name: "6"
     },
     {
-        topItem: { text: "300ml" }
+        topItem: { text: "2 Medium" },
+        name: "7"
     },
     {
-        topItem: { text: "500ml" }
+        topItem: { text: "Refill" },
+        name: "8"
     },
     {
-        topItem: { text: "Test" }
+        topItem: { text: "" },
+        bottomItem: { text: "" },
+        name: "9"
+    },
+    {
+        topItem: { text: "21oz" },
+        bottomItem: { text: "12oz" },
+        name: "10"
+    },
+    {
+        topItem: { text: "Large" },
+        name: "11"
+    },
+    {
+        topItem: { text: "2 for" },
+        name: "12"
+    },
+    {
+        topItem: { text: "300ml" },
+        name: "13"
+    },
+    {
+        topItem: { text: "500ml" },
+        name: "14"
+    },
+    {
+        topItem: { text: "Test" },
+        name: "15"
     }
 ];
 

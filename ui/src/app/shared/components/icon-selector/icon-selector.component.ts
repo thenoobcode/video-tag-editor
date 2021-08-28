@@ -8,9 +8,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class IconSelectorComponent implements OnInit {
   @Input() title: string;
   @Input() icons: string[];
+  @Input() selectedIcon: string;
   @Output() onSelect: EventEmitter<string>;
 
-  selectedIcon: string;
 
   constructor() {
     this.onSelect = new EventEmitter();
