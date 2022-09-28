@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { mergeMap, take } from 'rxjs/operators';
 import { CommonService } from 'src/app/shared/services/common.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { VideoApiService } from 'src/app/shared/services/video-api.service';
 import { VideoService } from 'src/app/shared/services/video.service';
 
@@ -16,14 +17,20 @@ export class VideoUploadComponent implements OnInit {
     private videoSvc: VideoService,
     private router: Router,
     private videoAPISvc: VideoApiService,
-    private commonSvc: CommonService
+    private commonSvc: CommonService,
+    private notificationSvc: NotificationService
   ) { }
 
   ngOnInit(): void {
   }
 
   onFileChange(files: FileList) {
-    if(files?.length > 0) this.selectedFile = files[0];
+    if (files?.length > 0) {
+      if (files[0].type.match('video.*'))
+        this.selectedFile = files[0];
+      else
+        this.notificationSvc.alert("Please upload only video files.");
+    }
   }
 
   async uploadVideo() {

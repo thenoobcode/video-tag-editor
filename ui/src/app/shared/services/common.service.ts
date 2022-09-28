@@ -11,18 +11,14 @@ export class CommonService {
 
   public handleError(err: any, defaultMsg?: string) {
     if (err instanceof HttpErrorResponse) {
-      this.notificationSvc.alert(err.message);
-      console.error(err);
-    }
-    else if(err?.error?.message)
-    {
-      this.notificationSvc.alert(err.error.message);
+      this.notificationSvc.alert(err && err.error && err.error.message ? err.error.message : err.message);
     }
     else {
       this.notificationSvc
         .alert(defaultMsg ? defaultMsg : "Something didn't work quite right. Please try again.");
-      console.error(err);
     }
+    
+    console.error(err);
   }
 
   public downloadFile(data: any, type: string='application/zip', newLink:boolean=false) {
